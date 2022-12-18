@@ -133,6 +133,7 @@
 		<li IfModActive="dracoix.zars.core">Mods/dracoix.zars.core</li>
 		<li IfModActive="vanillaexpanded.ideo.dryads">Mods/vanillaexpanded.ideo.dryads</li>
 		<li IfModActive="oskarpotocki.vfe.classical">Mods/oskarpotocki.vfe.classical</li>
+		<li IfModActive="tikubonn.rimseasoning">Mods/tikubonn.rimseasoning</li>
 	</v1.3>
 	<v1.4>
 		<li>1.4</li>
@@ -268,5 +269,12 @@
 		<li IfModActive="dracoix.zars.core">Mods/dracoix.zars.core</li>
 		<li IfModActive="vanillaexpanded.ideo.dryads">Mods/vanillaexpanded.ideo.dryads</li>
 		<li IfModActive="oskarpotocki.vfe.classical">Mods/oskarpotocki.vfe.classical</li>
+		<li IfModActive="tikubonn.rimseasoning">Mods/tikubonn.rimseasoning</li>
+		<li IfModActive="mlie.rc2.core">Mods/mlie.rc2.core</li>
+		<li IfModActive="mlie.rc2.sase">Mods/mlie.rc2.sase</li>
+		<li IfModActive="miho.fortifiedoutremer">Mods/miho.fortifiedoutremer</li>
+		<li IfModActive="Millap.Bori">Mods/Millap.Bori</li>
+		<li IfModActive="plaxen.MonaTMB">Mods/plaxen.MonaTMB</li>
+		<li IfModActive="RooAndGloomy.YuranRaceMod">Mods/RooAndGloomy.YuranRaceMod</li>
 	</v1.4>
 </loadFolders>
