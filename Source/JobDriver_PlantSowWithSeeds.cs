@@ -14,11 +14,8 @@ namespace SeedsPleaseLite
         public override string GetReport ()
         {
             string text = JobDefOf.Sow.reportString;
-            if (job.plantDefToSow != null) {
-                text = text.Replace ("TargetA", GenLabel.ThingLabel (job.plantDefToSow, null, 1));
-            } else {
-                text = text.Replace ("TargetA", "area");
-            }
+            if (job.plantDefToSow != null) text = text.Replace ("TargetA", GenLabel.ThingLabel (job.plantDefToSow, null, 1));
+            else text = text.Replace ("TargetA", "area");
             return text;
         }
         public override void ExposeData ()
@@ -48,9 +45,16 @@ namespace SeedsPleaseLite
             yield return toil;
             yield return SowSeedToil();
             yield return Toils_Reserve.Release(targetCellIndex);
-            yield return TryToSetAdditionalPlantingSite();
-            yield return Toils_Reserve.Reserve(targetCellIndex, 1);
-            yield return Toils_Jump.Jump(toil);
+            if (!job.plantDefToSow?.plant?.blockAdjacentSow ?? true)
+            {
+                yield return TryToSetAdditionalPlantingSite();
+                yield return Toils_Reserve.Reserve(targetCellIndex, 1);
+                yield return Toils_Jump.Jump(toil);
+            }
+        }
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+            return pawn.Reserve (job.targetA, job, 1, -1, null, errorOnFailed);
         }
         Toil ReserveSeedsIfWillPlantWholeStack ()
         {
@@ -73,7 +77,6 @@ namespace SeedsPleaseLite
         Toil SowSeedToil()
         {
             Toil toil = new Toil();
-            toil.defaultCompleteMode = ToilCompleteMode.Never;
             toil.initAction = delegate
             {
                 Pawn actor = toil.actor;
@@ -98,7 +101,7 @@ namespace SeedsPleaseLite
                 if (actor.skills != null) actor.skills.Learn(SkillDefOf.Plants, 0.22f);
                 if (plant.LifeStage != PlantLifeStage.Sowing) Log.Error(this + " getting sowing work while not in Sowing life stage.");
 
-                sowWorkDone += StatExtension.GetStatValue(actor, StatDefOf.PlantWorkSpeed, true);
+                sowWorkDone += StatExtension.GetStatValue(actor, StatDefOf.PlantWorkSpeed);
                 if (sowWorkDone >= plant.def.plant.sowWork)
                 {
                     if (!IsActorCarryingAppropriateSeed(actor, job.plantDefToSow))
@@ -131,7 +134,10 @@ namespace SeedsPleaseLite
                     Plant plant = (Plant)thing;
                     if (!thing.Destroyed)
                     {
-                        actor.Map.reservationManager.Release(job.targetC, actor, job);
+                        if (actor.Map.reservationManager.IsReservedByAnyoneOf(job.targetC, actor.Faction))
+                        {
+                            actor.Map.reservationManager.Release(job.targetC, actor, job);
+                        } 
                         if (sowWorkDone < plant.def.plant.sowWork) thing.Destroy(DestroyMode.Vanish);
                     }
                     job.targetC = null;
@@ -140,7 +146,7 @@ namespace SeedsPleaseLite
             toil.activeSkill = (() => SkillDefOf.Plants);
             return toil;
         }
-        Toil TryToSetAdditionalPlantingSite ()
+        Toil TryToSetAdditionalPlantingSite()
         {
             Toil toil = new Toil ();
             toil.defaultCompleteMode = ToilCompleteMode.Instant;
@@ -149,7 +155,7 @@ namespace SeedsPleaseLite
                 Pawn actor = toil.actor;
                 if (IsActorCarryingAppropriateSeed(actor, job.plantDefToSow))
                 {
-                    if (GetNearbyPlantingSite(job.GetTarget(targetCellIndex).Cell, actor.Map, out IntVec3 intVec))
+                    if (GetNearbyPlantingSite(job.GetTarget(targetCellIndex).Cell, actor, out IntVec3 intVec))
                     {
                         job.SetTarget(targetCellIndex, intVec);
                         return;
@@ -162,75 +168,45 @@ namespace SeedsPleaseLite
 
             return toil;
         }
-
-        bool GetNearbyPlantingSite (IntVec3 originPos, Map map, out IntVec3 newSite)
+        bool GetNearbyPlantingSite(IntVec3 originPos, Pawn actor, out IntVec3 newSite)
         {
-            Pawn actor = GetActor();
-            Predicate<IntVec3> validator = (IntVec3 tempCell) => 
-                IsCellOpenForSowingPlantOfType(tempCell, map, job.plantDefToSow) && 
-                ReservationUtility.CanReserveAndReach(actor, tempCell, PathEndMode.Touch, DangerUtility.NormalMaxDanger(actor), 1);
+            Map map = actor.Map;
+            Predicate<IntVec3> validator = nearbyCell => 
+                IsCellOpenForSowingPlantOfType(nearbyCell, map, job.plantDefToSow) && 
+                ReservationUtility.CanReserveAndReach(actor, nearbyCell, PathEndMode.Touch, DangerUtility.NormalMaxDanger(actor));
 
-            return CellFinder.TryFindRandomCellNear(originPos, map, 2, validator, out newSite);
+            return CellFinder.TryFindRandomCellNear(originPos, map, 3, validator, out newSite);
         }
-
-        static bool IsCellOpenForSowingPlantOfType (IntVec3 cell, Map map, ThingDef plantDef)
+        bool IsCellOpenForSowingPlantOfType(IntVec3 cell, Map map, ThingDef plantDef)
         {
             var playerSetPlantForCell = GetPlayerSetPlantForCell (cell, map);
-            if (playerSetPlantForCell == null || !playerSetPlantForCell.CanAcceptSowNow ()) {
-                return false;
-            }
+            if (playerSetPlantForCell == null || !playerSetPlantForCell.CanAcceptSowNow ()) return false;
 
             var plantDefToGrow = playerSetPlantForCell.GetPlantDefToGrow ();
-            if (plantDefToGrow == null || plantDefToGrow != plantDef) {
-                return false;
-            }
+            if (plantDefToGrow == null || plantDefToGrow != plantDef) return false;
 
-            if (cell.GetPlant (map) != null) {
-                return false;
-            }
+            if (cell.GetPlant(map) != null || PlantUtility.AdjacentSowBlocker(plantDefToGrow, cell, map) != null) return false;
 
-            if (PlantUtility.AdjacentSowBlocker (plantDefToGrow, cell, map) != null) {
-                return false;
-            }
+            var list = map.thingGrid.ThingsListAt(cell);
+            for (int i = list.Count; i-- > 0;) if (list[i].def.BlocksPlanting(true)) return false;
 
-            foreach (Thing current in map.thingGrid.ThingsListAt (cell)) {
-                if (current.def.BlocksPlanting(true)) {
-                    return false;
-                }
-            }
-            return (plantDefToGrow.CanEverPlantAt (cell, map) && PlantUtility.GrowthSeasonNow (cell, map, true));
+            return (plantDefToGrow.CanEverPlantAt(cell, map) && PlantUtility.GrowthSeasonNow(cell, map, true));
         }
-
-        static IPlantToGrowSettable GetPlayerSetPlantForCell (IntVec3 cell, Map map)
+        IPlantToGrowSettable GetPlayerSetPlantForCell(IntVec3 cell, Map map)
         {
-            var plantToGrowSettable = cell.GetEdifice (map) as IPlantToGrowSettable;
-            if (plantToGrowSettable == null) {
-                plantToGrowSettable = (map.zoneManager.ZoneAt (cell) as IPlantToGrowSettable);
-            }
-            return plantToGrowSettable;
+            var plantToGrowSettable = cell.GetEdifice(map) as IPlantToGrowSettable;
+            return plantToGrowSettable == null ? plantToGrowSettable = map.zoneManager.ZoneAt(cell) as IPlantToGrowSettable : plantToGrowSettable;
         }
-
-        static bool IsActorCarryingAppropriateSeed (Pawn pawn, ThingDef thingDef)
+        bool IsActorCarryingAppropriateSeed(Pawn pawn, ThingDef thingDef)
         {
-            if (pawn.carryTracker == null) {
-                return false;
-            }
+            if (pawn.carryTracker == null) return false;
 
             var carriedThing = pawn.carryTracker.CarriedThing;
-            if (carriedThing == null || carriedThing.stackCount < 1) {
-                return false;
-            }
+            if (carriedThing == null || carriedThing.stackCount < 1) return false;
 
-            if (thingDef.blueprintDef != carriedThing.def) {
-                return false;
-            }
+            if (thingDef.blueprintDef != carriedThing.def) return false;
 
             return true;
-        }
-
-        public override bool TryMakePreToilReservations(bool errorOnFailed)
-        {
-            return pawn.Reserve (job.targetA, job, 1, -1, null, errorOnFailed);
         }
     }
 }

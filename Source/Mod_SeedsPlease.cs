@@ -9,9 +9,8 @@ namespace SeedsPleaseLite
     {
         public Mod_SeedsPlease(ModContentPack content) : base(content)
         {
-            new Harmony(this.Content.PackageIdPlayerFacing).PatchAll();
             base.GetSettings<ModSettings_SeedsPleaseLite>();
-            LongEventHandler.QueueLongEvent(() => SeedsPleaseUtility.Setup(), null, false, null);
+			new Harmony(this.Content.PackageIdPlayerFacing).PatchAll();
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
@@ -31,6 +30,8 @@ namespace SeedsPleaseLite
 
 			options.CheckboxLabeled("SPL.Settings.NoUselessSeeds".Translate(), ref noUselessSeeds, "SPL.Settings.NoUselessSeeds.Desc".Translate());
 			options.CheckboxLabeled("SPL.Settings.ClearSnow".Translate(), ref clearSnow, "SPL.Settings.ClearSnow.Desc".Translate());
+
+			options.CheckboxLabeled("SPL.Settings.EdibleSeeds".Translate(), ref edibleSeeds, "SPL.Settings.EdibleSeeds.Desc".Translate());
 			
 			options.End();
 			base.DoSettingsWindowContents(inRect);
@@ -51,16 +52,17 @@ namespace SeedsPleaseLite
 	{
 		public override void ExposeData()
 		{
-			Scribe_Values.Look<float>(ref marketValueModifier, "marketValueModifier", 1f, false);
-            Scribe_Values.Look<float>(ref extractionModifier, "extractionModifier", 1f, false);
-            Scribe_Values.Look<float>(ref seedFactorModifier, "seedFactorModifier", 1f, false);
-			Scribe_Values.Look<bool>(ref noUselessSeeds, "noUselessSeeds", true, false);
-			Scribe_Values.Look<bool>(ref clearSnow, "clearSnow", false, false);
+			Scribe_Values.Look(ref marketValueModifier, "marketValueModifier", 1f);
+            Scribe_Values.Look(ref extractionModifier, "extractionModifier", 1f);
+            Scribe_Values.Look(ref seedFactorModifier, "seedFactorModifier", 1f);
+			Scribe_Values.Look(ref noUselessSeeds, "noUselessSeeds", true);
+			Scribe_Values.Look(ref clearSnow, "clearSnow");
+			Scribe_Values.Look(ref edibleSeeds, "clearSnow", true);
 			
 			base.ExposeData();
 		}
 
 		public static float marketValueModifier = 1f, extractionModifier = 1f, seedFactorModifier = 1f;
-		public static bool noUselessSeeds = true, clearSnow;
+		public static bool noUselessSeeds = true, clearSnow, edibleSeeds = true;
 	}
 }

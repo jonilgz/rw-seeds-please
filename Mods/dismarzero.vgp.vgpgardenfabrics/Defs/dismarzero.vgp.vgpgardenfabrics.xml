@@ -7,6 +7,7 @@
 				<sources>
 					<li>PlantFlax</li>
 				</sources>
+				<extraChance>0.33</extraChance>
 			</li>
 		</modExtensions>
 		<graphicData><texPath>Seeds/Flax</texPath></graphicData>

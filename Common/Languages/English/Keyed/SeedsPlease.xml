@@ -6,6 +6,8 @@
 	<SeedExtraChance>Chance of extra seeds</SeedExtraChance>
 	<GrowDays>Growth period</GrowDays>
 	<SPL.BillHelp>(Clear the filter first and then select a seed before selecting this bill type.)</SPL.BillHelp>
+	<SPL.SeedSpotError>Must be placed on a stove's surface.</SPL.SeedSpotError>
+	<SPL.Invalid>Invalid</SPL.Invalid>
 	
 	<SPL.RequiresRestart>The following settings require a game restart:</SPL.RequiresRestart>
 	<SPL.Settings.MarketValueModifier>Market value modifier (Mod default: {0}, Min: {1}, Max: {2}): </SPL.Settings.MarketValueModifier>
@@ -22,4 +24,7 @@
 	
 	<SPL.Settings.ClearSnow>Clear snow before sowing</SPL.Settings.ClearSnow>
 	<SPL.Settings.ClearSnow.Desc>If enabled, pawns will clear any snow greater than 20% deep before sowing. This feature is optional and exists more for aesthetics and realism purposes.</SPL.Settings.ClearSnow.Desc>
+	
+	<SPL.Settings.EdibleSeeds>Edible seeds</SPL.Settings.EdibleSeeds>
+	<SPL.Settings.EdibleSeeds.Desc>If enabled, seeds can be eaten by any animal that would eat hay.\n\nChanging this requires a game restart to rebuild the seed database.</SPL.Settings.EdibleSeeds.Desc>
 </LanguageData>

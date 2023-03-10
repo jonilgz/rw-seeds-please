@@ -22,7 +22,20 @@
 			<!-- Add seeds to any traders that sell plant-related, resource, or genetic (modified seeds exist!) goods -->
 			<li Class="PatchOperationAdd">
 				<success>Always</success>
-				<xpath>Defs/TraderKindDef/stockGenerators[li/categoryDef="ResourcesRaw" or li/categoryDef="FoodRaw" or li/thingDef="WoodLog" or li/thingDef="Pemmican" or li/thingDef="Kibble" or li/thingDef="Hay" or li/thingDef="Dye" or li/thingDef="Cloth" or li/thingDef="Genepack" or li/thingDef="MedicineHerbal" or li/thingDef="Beer" or li/thingDef="MealSurvivalPack" or li/thingDef="VFEI_DroneGenome" or li/thingDef="VFEM_Wine"]</xpath>
+				<xpath>Defs/TraderKindDef/stockGenerators[li/categoryDef="ResourcesRaw" or 
+					li/categoryDef="FoodRaw" or 
+					li/thingDef="WoodLog" or 
+					li/thingDef="Pemmican" or 
+					li/thingDef="Kibble" or 
+					li/thingDef="Hay" or 
+					li/thingDef="Dye" or 
+					li/thingDef="Cloth" or 
+					li/thingDef="Genepack" or 
+					li/thingDef="MedicineHerbal" or 
+					li/thingDef="Beer" or 
+					li/thingDef="MealSurvivalPack" or 
+					li/thingDef="VFEI_DroneGenome" or 
+					li/thingDef="VFEM_Wine"]</xpath>
 				<value>
 					<li Class="StockGenerator_Tag">
 						<tradeTag>Seeds</tradeTag>
@@ -70,7 +83,7 @@
 				</value>
 			</li>
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Plant_Haygrass"]</xpath>
+				<xpath>Defs/ThingDef[defName="Plant_Haygrass" or defName="Plant_TreeBonsai"]</xpath>
 				<value>
 					<li Class="SeedsPleaseLite.Seedless" />
 				</value>

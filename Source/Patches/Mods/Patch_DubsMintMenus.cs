@@ -46,9 +46,9 @@ namespace SeedsPleaseLite
             return target;
         }
 
-        static void Postfix(ThingDef plantDef, Map map, ref bool __result)
+        static bool Postfix(bool __result, ThingDef plantDef, Map map)
         {
-            Patch_IsPlantAvailable.Postfix(plantDef, map, ref __result);
+            return Patch_IsPlantAvailable.Postfix(__result, plantDef, map);
         }
     }
 }
