@@ -1,5 +1,5 @@
 <Defs>
-	<ThingDef>
+	<ThingDef ParentName="SeedBase">
 		<defName>SeedPlantSoybean</defName>
 		<label>Soybean seeds</label>
 		<modExtensions>
