@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using Verse;
@@ -13,32 +11,8 @@ namespace SeedsPleaseLite
 
         static bool Prepare()
         {
-            Type type;
-
-            var mod = LoadedModManager.RunningMods.FirstOrDefault(m => m.Name == "Dubs Mint Menus");
-            if (mod == null) {
-                return false;
-            }
-
-            type = mod.assemblies.loadedAssemblies
-                        .FirstOrDefault(a => a.GetName().Name == "DubsMintMenus")?
-                        .GetType("DubsMintMenus.Dialog_FancyDanPlantSetterBob");
-
-            if (type == null) {
-                Log.Warning("SeedsPlease :: Can't patch DubsMintMenu. No Dialog_FancyDanPlantSetterBob");
-
-                return false;
-            }
-
-            target = AccessTools.DeclaredMethod(type, "IsPlantAvailable");
-
-            if (target == null) {
-                Log.Warning("SeedsPlease :: Can't patch DubsMintMenu. No IsPlantAvailable");
-
-                return false;
-            }
-
-            return true;
+            target = AccessTools.DeclaredMethod(AccessTools.TypeByName("DubsMintMenus.Dialog_FancyDanPlantSetterBob"), "IsPlantAvailable");
+            return target != null;
         }
 
         static MethodBase TargetMethod()

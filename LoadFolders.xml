@@ -222,7 +222,6 @@
 		<li IfModActive="sirmashedpotato.morrowrim.bloodmoon">Mods/sirmashedpotato.morrowrim.bloodmoon</li>
 		<li IfModActive="sirmashedpotato.morrowrim.moonsugarandskooma">Mods/sirmashedpotato.morrowrim.moonsugarandskooma</li>
 		<li IfModActive="sirmashedpotato.morrowrim.telvannitechnology">Mods/sirmashedpotato.morrowrim.telvannitechnology</li>
-		<li IfModActive="sirmashedpotato.morrowrim.telvannispiders">Mods/sirmashedpotato.morrowrim.telvannispiders</li>
 		<li IfModActive="dankpyon.medieval.overhaul">Mods/dankpyon.medieval.overhaul</li>
 		<li IfModActive="windowsxp.rimcuisine2drugsstandalone">Mods/windowsxp.rimcuisine2drugsstandalone</li>
 		<li IfModActive="frozensnowfox.meditationfreedom,frozensnowfox.meditationfreedomnostory">Mods/frozensnowfox.meditationfreedom</li>
@@ -275,5 +274,6 @@
 		<li IfModActive="Millap.Bori">Mods/Millap.Bori</li>
 		<li IfModActive="plaxen.MonaTMB">Mods/plaxen.MonaTMB</li>
 		<li IfModActive="RooAndGloomy.YuranRaceMod">Mods/RooAndGloomy.YuranRaceMod</li>
+		<li IfModActive="BiomesTeam.BiomesPrehistoric">Mods/biomesteam.biomesprehistoric</li>
 	</v1.4>
 </loadFolders>

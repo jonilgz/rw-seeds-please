@@ -60,6 +60,7 @@ namespace SeedsPleaseLite
     }
 
     //This patches the random resource drop pod event to reduce odds of it being seeds since seeds can overwhelm the loot table
+    //TODO: Transpile this
     [HarmonyPatch(typeof(ThingSetMaker_ResourcePod), nameof(ThingSetMaker_ResourcePod.PossiblePodContentsDefs))]
     static class Patch_PossiblePodContentsDefs
     {
@@ -70,11 +71,9 @@ namespace SeedsPleaseLite
             //If it fails, pick again, this time filtering out any seeds
             else
             {
-                var list = DefDatabase<ThingDef>.AllDefsListForReading;
-                var length = list.Count;
-                for (int i = 0; i < length; i++)
+                for (int i = DefDatabase<ThingDef>.defsList.Count; i-- > 0;)
                 {
-                    var d = list[i];
+                    var d = DefDatabase<ThingDef>.defsList[i];
                     if (d.category == ThingCategory.Item && 
                         d.equipmentType == EquipmentType.None && 
                         d.BaseMarketValue >= 1f && 
@@ -104,12 +103,11 @@ namespace SeedsPleaseLite
                 }
                 
                 //Get a list of seeds that are sensitive to biome restrictions
-                var list = DefDatabase<ThingDef>.AllDefsListForReading;
-                var length = list.Count;
-                for (int i = 0; i < length; i++)
+                for (int i = DefDatabase<ThingDef>.defsList.Count; i-- > 0;)
                 {
-                    var seed = list[i];
-                    if (seed.HasModExtension<Seed>() && seed.GetModExtension<Seed>().sources.Any(y => y.plant.mustBeWildToSow && y.plant.purpose != PlantPurpose.Beauty))
+                    var seed = DefDatabase<ThingDef>.defsList[i];
+                    var modExt = seed.GetModExtension<Seed>();
+                    if (modExt != null && modExt.sources.Any(y => y.plant.mustBeWildToSow && y.plant.purpose != PlantPurpose.Beauty))
                     {
                         //Of those seeds, determine which ones are useless and add them to the excluded defs list
                         if (!wildBiomePlants.Intersect(seed.GetModExtension<Seed>().sources).Any())

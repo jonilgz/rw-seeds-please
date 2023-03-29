@@ -32,10 +32,10 @@ namespace SeedsPleaseLite
 			if (__result == null || __result.def != JobDefOf.Sow) return __result;
 			ThingDef seed = __result.plantDefToSow?.blueprintDef;
 			if (seed == null || seed.thingCategories.NullOrEmpty()) return __result;
-			
+
 			Map map = pawn.Map;
 			if (ModSettings_SeedsPleaseLite.clearSnow && NeedsToClearSnowFirst(c, map, pawn, ref __result)) return __result;
-
+			
 			//Predicate filtering the kind of seed allowed
 			Predicate<Thing> predicate = tempThing =>
 				!ForbidUtility.IsForbidden(tempThing, pawn.Faction)
@@ -46,7 +46,7 @@ namespace SeedsPleaseLite
 			//Find the instance on the map to go fetch
 			Thing bestSeedThingForSowing = GenClosest.ClosestThingReachable(c, map, ThingRequest.ForDef(seed), PathEndMode.ClosestTouch, TraverseParms.For(pawn), validator: predicate);
 			
-			return bestSeedThingForSowing == null ? null : new Job(ResourceBank.JobDefOf.SowWithSeeds, c, bestSeedThingForSowing)
+			return bestSeedThingForSowing == null ? null : new Job(ResourceBank.Defs.SowWithSeeds, c, bestSeedThingForSowing)
 			{
 				plantDefToSow = __result.plantDefToSow,
 				count = SEEDS_TO_CARRY

@@ -11,21 +11,10 @@ namespace SeedsPleaseLite
         };
 
         [DefOf]
-        public static class JobDefOf
+        public static class Defs
         {
             public static JobDef SowWithSeeds;
-        }
-
-        [DefOf]
-        public static class ThingCategoryDefOf
-        {
             public static ThingCategoryDef SeedExtractable, SeedsCategory;
-            
-        }
-
-        [DefOf]
-        public static class RecipeDefOf
-        {
             public static RecipeDef ExtractSeeds;
         }
     }

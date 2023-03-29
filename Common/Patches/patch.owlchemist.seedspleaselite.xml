@@ -40,12 +40,12 @@
 					<li Class="StockGenerator_Tag">
 						<tradeTag>Seeds</tradeTag>
 						<thingDefCountRange>
-							<min>3</min>
-							<max>5</max>
+							<min>5</min>
+							<max>8</max>
 						</thingDefCountRange>
 						<countRange>
-							<min>9</min>
-							<max>25</max>
+							<min>20</min>
+							<max>40</max>
 						</countRange>
 					</li>
 				</value>
@@ -58,18 +58,18 @@
 					<li Class="StockGenerator_Tag">
 						<tradeTag>Seeds</tradeTag>
 						<thingDefCountRange>
-							<min>2</min>
-							<max>4</max>
+							<min>4</min>
+							<max>8</max>
 						</thingDefCountRange>
 						<countRange>
-							<min>9</min>
-							<max>25</max>
+							<min>20</min>
+							<max>50</max>
 						</countRange>
 					</li>
 					<li Class="StockGenerator_SingleDef">
 						<thingDef>RawCotton</thingDef>
 						<countRange>
-							<min>-200</min>
+							<min>200</min>
 							<max>600</max>
 						</countRange>
 					</li>

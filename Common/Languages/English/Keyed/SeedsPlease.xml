@@ -27,4 +27,10 @@
 	
 	<SPL.Settings.EdibleSeeds>Edible seeds</SPL.Settings.EdibleSeeds>
 	<SPL.Settings.EdibleSeeds.Desc>If enabled, seeds can be eaten by any animal that would eat hay.\n\nChanging this requires a game restart to rebuild the seed database.</SPL.Settings.EdibleSeeds.Desc>
+
+	<SPL.Settings.ReloadNeeded>The game will need to be reloaded in order to reprocess the def detabase for the adding/removing of seeds.</SPL.Settings.ReloadNeeded>
+	<SPL.Settings.ReloadNeededHeader>Reload needed</SPL.Settings.ReloadNeededHeader>
+
+	<SPL.Settings.SeedlessDesc>Define which plants do not need seeds (unharvestable plants cannot be changed).</SPL.Settings.SeedlessDesc>
+	<SPL.Settings.LabelsDesc>Rename the labels for seeds with your own (feature currently disabled).</SPL.Settings.LabelsDesc>
 </LanguageData>
