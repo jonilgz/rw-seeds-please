@@ -339,10 +339,7 @@ namespace SeedsPleaseLite
                 var sources = seedEx.sources;
                 for (int j = sources.Count; j-- > 0;)
                 {
-                    ThingDef source = sources[j];
-                    if (source.plant.harvestedThingDef == null) continue;
-
-                    ThingDef thisProduce = DefDatabase<ThingDef>.GetNamed(source.plant.harvestedThingDef.defName);
+                    ThingDef thisProduce = sources[j].plant.harvestedThingDef;
                     if (thisProduce == null) continue;
 
                     //We don't add butchery things to non-produce harvests like wood.
@@ -356,16 +353,19 @@ namespace SeedsPleaseLite
                     if (thisProduce.butcherProducts.Count == 0) thisProduce.butcherProducts.Add(seedToAdd);
 
                     //Give warning, or ignore if the seed is the same (which would happen if an alt plant exists like for example wild healroot)
-                    else if (thisProduce.butcherProducts[0].thingDef != seed) 
+                    else
                     {
-                        int? priorityCurrent = thisProduce.butcherProducts[0].thingDef.GetModExtension<Seed>()?.priority;
-                        int priorityNew = seedEx.priority;
+                        var list = thisProduce.butcherProducts[0];
+                        if (list.thingDef != seed) 
+                        {
+                            int? priorityCurrent = list.thingDef.GetModExtension<Seed>()?.priority;
+                            int priorityNew = seedEx.priority;
 
-                        //Compare priorioty to determine winner
-                        if (priorityNew > priorityCurrent) thisProduce.butcherProducts[0] = seedToAdd;
-                        else if (priorityNew == priorityCurrent) Log.Warning("[Seeds Please: Lite] The seed " + seed.defName + " wants to be extracted from "
-                        + thisProduce.defName + " but this produce already contains seeds for " + thisProduce.butcherProducts[0].thingDef.defName + 
-                        ". This will need to be resolved manually, please report.");
+                            //Compare priorioty to determine winner
+                            if (priorityNew > priorityCurrent) thisProduce.butcherProducts[0] = seedToAdd;
+                            else if (priorityNew == priorityCurrent)
+                                Log.Warning($"[Seeds Please: Lite] The seed {seed.defName} wants to be extracted from {thisProduce.defName} but this produce already contains seeds for {thisProduce.butcherProducts[0].thingDef.defName}. This will need to be resolved manually, please report.");
+                        }
                     }
 
                     //Don't allow null lists
