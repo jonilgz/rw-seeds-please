@@ -1,0 +1,54 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Remove junk files
+        run: find . \( -name '*.DS_Store' -o -name '*.bak' -o -name '*~' \) -delete
+
+      - name: Set release filename
+        id: vars
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/v}"
+          REPO_NAME=$(basename "$GITHUB_REPOSITORY")
+          ZIP_NAME="${REPO_NAME}-${VERSION}.zip"
+          echo "zip_name=$ZIP_NAME" >> $GITHUB_OUTPUT
+
+      - name: Zip mod folder
+        run: |
+          zip -r "${{ steps.vars.outputs.zip_name }}" About 1.6 README.md LICENSE.txt CHANGELOG.md || true
+
+      - name: Generate SHA256 checksum
+        run: sha256sum "${{ steps.vars.outputs.zip_name }}" > "${{ steps.vars.outputs.zip_name }}.sha256"
+
+      - name: Extract release notes from CHANGELOG.md
+        id: changelog
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/v}"
+          NOTES=$(awk "/^## \\[$VERSION\\]/ {flag=1; next} /^## / {flag=0} flag" CHANGELOG.md)
+          if [ -z "$NOTES" ]; then
+            NOTES="⚠️ No changelog found for version $VERSION."
+          fi
+          echo "release_notes<<EOF" >> $GITHUB_OUTPUT
+          echo "$NOTES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ steps.vars.outputs.zip_name }}
+            ${{ steps.vars.outputs.zip_name }}.sha256
+          body: ${{ steps.changelog.outputs.release_notes }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
