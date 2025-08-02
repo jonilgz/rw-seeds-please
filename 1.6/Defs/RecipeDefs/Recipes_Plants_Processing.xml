@@ -44,7 +44,7 @@
 		<specialProducts>
 			<li>Butchery</li>
 		</specialProducts>
-		<workerCounterClass>SeedsPleaseLite.RecipeWorkerCounter_ExtractSeeds</workerCounterClass>
+		<workerCounterClass>SeedsPleaseRevived.RecipeWorkerCounter_ExtractSeeds</workerCounterClass>
 	</RecipeDef>
 	
 	<RecipeDef ParentName="ProcessRaw">

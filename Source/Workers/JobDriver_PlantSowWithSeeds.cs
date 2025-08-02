@@ -4,7 +4,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace SeedsPleaseLite
+namespace SeedsPleaseRevived
 {
     public class JobDriver_PlantSowWithSeeds : JobDriver
     {

@@ -3,15 +3,15 @@ using Verse;
 using UnityEngine;
 using RimWorld;
 using System.Collections.Generic;
-using static SeedsPleaseLite.ModSettings_SeedsPleaseLite;
+using static SeedsPleaseRevived.ModSettings_SeedsPleaseRevived;
 
-namespace SeedsPleaseLite
+namespace SeedsPleaseRevived
 {
 	public class Mod_SeedsPlease : Mod
 	{
 		public Mod_SeedsPlease(ModContentPack content) : base(content)
 		{
-			base.GetSettings<ModSettings_SeedsPleaseLite>();
+			base.GetSettings<ModSettings_SeedsPleaseRevived>();
 			new Harmony(this.Content.PackageIdPlayerFacing).PatchAll();
 		}
 
@@ -104,7 +104,7 @@ namespace SeedsPleaseLite
 		}
 	}
 
-	public class ModSettings_SeedsPleaseLite : ModSettings
+	public class ModSettings_SeedsPleaseRevived : ModSettings
 	{
 		public override void ExposeData()
 		{
