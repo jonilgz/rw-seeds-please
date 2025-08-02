@@ -9,8 +9,8 @@ namespace SeedsPleaseLite
 {
     //This patch controls the dropping of seeds upon harvest
     [HarmonyPatch(typeof(Plant), nameof(Plant.PlantCollected))]
-	public class Patch_PlantCollected
-	{
+    public class Patch_PlantCollected
+    {
         public static void Prefix(Plant __instance, Pawn by)
         {
             Seed seedDefX = __instance.def.blueprintDef?.GetModExtension<Seed>();
@@ -39,10 +39,10 @@ namespace SeedsPleaseLite
 
                     GenPlace.TryPlaceThing(newSeeds, by.Position, by.Map, ThingPlaceMode.Near);
 
-                    if (!by.factionInt?.def.isPlayer ?? false) newSeeds.SetForbidden(true);
+                    if (!(by.Faction?.def.isPlayer ?? true)) newSeeds.SetForbidden(true);
                 }
             }
-	    }
+        }
     }
 
     //This is responsible for determining which crops show up on the list when you configue a grow zone
@@ -59,33 +59,7 @@ namespace SeedsPleaseLite
         }
     }
 
-    //This patches the random resource drop pod event to reduce odds of it being seeds since seeds can overwhelm the loot table
-    //TODO: Transpile this
-    [HarmonyPatch(typeof(ThingSetMaker_ResourcePod), nameof(ThingSetMaker_ResourcePod.PossiblePodContentsDefs))]
-    static class Patch_PossiblePodContentsDefs
-    {
-        static IEnumerable<ThingDef> Postfix(IEnumerable<ThingDef> values)
-        {
-            //Continue if passing a 33% odds chance
-            if (Rand.Chance(0.33f)) foreach (var value in values) yield return value;
-            //If it fails, pick again, this time filtering out any seeds
-            else
-            {
-                for (int i = DefDatabase<ThingDef>.defsList.Count; i-- > 0;)
-                {
-                    var d = DefDatabase<ThingDef>.defsList[i];
-                    if (d.category == ThingCategory.Item && 
-                        d.equipmentType == EquipmentType.None && 
-                        d.BaseMarketValue >= 1f && 
-                        d.BaseMarketValue < 40f && 
-                        d.tradeability.TraderCanSell() && 
-                        !d.HasComp(typeof(CompHatcher)) && 
-                        !d.HasModExtension<Seed>()
-                    ) yield return d;
-                }
-            }
-        }
-    }
+    // Patch for ThingSetMaker_ResourcePod.PossiblePodContentsDefs removed for RimWorld 1.6 compatibility.
 
     //This patchs traders to adjust their stock generation so they won't try to sell seeds you can't even grow
     [HarmonyPatch(typeof(StockGenerator_Tag), nameof(StockGenerator_Tag.GenerateThings))]
@@ -103,9 +77,10 @@ namespace SeedsPleaseLite
                 }
                 
                 //Get a list of seeds that are sensitive to biome restrictions
-                for (int i = DefDatabase<ThingDef>.defsList.Count; i-- > 0;)
+                var allDefs = DefDatabase<ThingDef>.AllDefsListForReading;
+                for (int i = allDefs.Count; i-- > 0;)
                 {
-                    var seed = DefDatabase<ThingDef>.defsList[i];
+                    var seed = allDefs[i];
                     var modExt = seed.GetModExtension<Seed>();
                     if (modExt != null && modExt.sources.Any(y => y.plant.mustBeWildToSow && y.plant.purpose != PlantPurpose.Beauty))
                     {

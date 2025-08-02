@@ -23,7 +23,7 @@ namespace SeedsPleaseLite
             base.ExposeData ();
             Scribe_Values.Look (ref sowWorkDone, "sowWorkDone", 0f, false);
         }
-        public override IEnumerable<Toil> MakeNewToils ()
+        protected override IEnumerable<Toil> MakeNewToils ()
         {
             this.FailOnDespawnedNullOrForbidden (targetCellIndex);
 
@@ -114,7 +114,7 @@ namespace SeedsPleaseLite
                     else --actor.carryTracker.CarriedThing.stackCount;
 
                     plant.Growth = 0.05f;
-                    plant.Map?.mapDrawer.MapMeshDirty(plant.Position, MapMeshFlag.Things);
+                    plant.Map?.mapDrawer.MapMeshDirty(plant.Position, 2); // 2 = Things mesh flag
                     actor.records.Increment(RecordDefOf.PlantsSown);
                     ReadyForNextToil();
                 }
@@ -188,9 +188,9 @@ namespace SeedsPleaseLite
             if (cell.GetPlant(map) != null || PlantUtility.AdjacentSowBlocker(plantDefToGrow, cell, map) != null) return false;
 
             var list = map.thingGrid.ThingsListAt(cell);
-            for (int i = list.Count; i-- > 0;) if (list[i].def.BlocksPlanting(true)) return false;
+            for (int i = list.Count; i-- > 0;) if (list[i].def.BlocksPlanting(false)) return false;
 
-            return (plantDefToGrow.CanEverPlantAt(cell, map) && PlantUtility.GrowthSeasonNow(cell, map, true));
+            return (plantDefToGrow.CanEverPlantAt(cell, map) && PlantUtility.GrowthSeasonNow(cell, map, plantDefToGrow));
         }
         IPlantToGrowSettable GetPlayerSetPlantForCell(IntVec3 cell, Map map)
         {

@@ -8,7 +8,7 @@ using static SeedsPleaseLite.SeedsPleaseUtility;
  
 namespace SeedsPleaseLite
 {
-    public static class OptionsDrawUtility
+	public static class OptionsDrawUtility
 	{
 		public static int lineNumber, cellPosition;
 		public const int lineHeight = 22; //Text.LineHeight + options.verticalSpacing;
@@ -81,14 +81,14 @@ namespace SeedsPleaseLite
 			{
 				Rect dataRect = new Rect(iconRect.xMax, iconRect.y, leftHalf.width - 32f, leftHalf.height);
 
-				Widgets.Label(dataRect, data?.Truncate(dataRect.width - 12f, InspectPaneUtility.truncatedLabelsCached));
+				Widgets.Label(dataRect, data?.Truncate(dataRect.width - 12f, null));
 				Rect rightHalf = rect.RightHalf();
-				Widgets.Label(rightHalf, label.Truncate(rightHalf.width - 12f, InspectPaneUtility.truncatedLabelsCached));
+				Widgets.Label(rightHalf, label.Truncate(rightHalf.width - 12f, null));
 			}
 			else
 			{
 				Rect dataRect = new Rect(iconRect.xMax, iconRect.y, rect.width - 32f, leftHalf.height);
-				Widgets.Label(dataRect, data?.Truncate(dataRect.width - 12f, InspectPaneUtility.truncatedLabelsCached));
+				Widgets.Label(dataRect, data?.Truncate(dataRect.width - 12f, null));
 			}
 
 			//Checkbox

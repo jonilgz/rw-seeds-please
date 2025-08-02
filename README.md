@@ -1,6 +1,6 @@
 # Seeds Please: Revived
 
-Seeds Please: Lite is a forked & updated version of the Seeds Please: Lite mod from Owlchemist. It reintroduces seed mechanics, requiring players to harvest and plant seeds to grow crops.
+Seeds Please: Revived is a forked & updated version of the Seeds Please: Lite mod from Owlchemist. It reintroduces seed mechanics, requiring players to harvest and plant seeds to grow crops.
 
 My goal with this project is to continue the work started by Owlchemist, maintaining and improving the mod with new ideas, tweaks, and fixes.
 
