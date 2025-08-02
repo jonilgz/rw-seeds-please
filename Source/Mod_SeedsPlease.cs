@@ -8,15 +8,15 @@ using static SeedsPleaseLite.ModSettings_SeedsPleaseLite;
 
 namespace SeedsPleaseLite
 {
-    public class Mod_SeedsPlease : Mod
-    {
-        public Mod_SeedsPlease(ModContentPack content) : base(content)
-        {
-            base.GetSettings<ModSettings_SeedsPleaseLite>();
+	public class Mod_SeedsPlease : Mod
+	{
+		public Mod_SeedsPlease(ModContentPack content) : base(content)
+		{
+			base.GetSettings<ModSettings_SeedsPleaseLite>();
 			new Harmony(this.Content.PackageIdPlayerFacing).PatchAll();
-        }
+		}
 
-        public override void DoSettingsWindowContents(Rect inRect)
+		public override void DoSettingsWindowContents(Rect inRect)
 		{
 			//========Setup tabs=========
 			GUI.BeginGroup(inRect);
@@ -26,15 +26,15 @@ namespace SeedsPleaseLite
 			
 			Listing_Standard options = new Listing_Standard();
 			options.Begin(inRect.ContractedBy(15f));
-            options.Label("SPL.RequiresRestart".Translate());
-            options.GapLine();
+			options.Label("SPL.RequiresRestart".Translate());
+			options.GapLine();
 			options.Label("SPL.Settings.MarketValueModifier".Translate("100%", "20%", "500%") + marketValueModifier.ToStringPercent(), -1f, "SPL.Settings.MarketValueModifier.Desc".Translate());
 			marketValueModifier = options.Slider(marketValueModifier, 0.2f, 5f);
 
-            options.Label("SPL.Settings.SeedExtractionModifier".Translate("100%", "20%", "500%") + extractionModifier.ToStringPercent(), -1f, "SPL.Settings.SeedExtractionModifier.Desc".Translate("4"));
+			options.Label("SPL.Settings.SeedExtractionModifier".Translate("100%", "20%", "500%") + extractionModifier.ToStringPercent(), -1f, "SPL.Settings.SeedExtractionModifier.Desc".Translate("4"));
 			extractionModifier = options.Slider(extractionModifier, 0.2f, 5f);
 
-            options.Label("SPL.Settings.SeedFactorModifier".Translate("100%", "20%", "500%") + seedFactorModifier.ToStringPercent(), -1f, "SPL.Settings.SeedFactorModifier.Desc".Translate("1"));
+			options.Label("SPL.Settings.SeedFactorModifier".Translate("100%", "20%", "500%") + seedFactorModifier.ToStringPercent(), -1f, "SPL.Settings.SeedFactorModifier.Desc".Translate("1"));
 			seedFactorModifier = options.Slider(seedFactorModifier, 0.2f, 5f);
 
 			options.CheckboxLabeled("SPL.Settings.NoUselessSeeds".Translate(), ref noUselessSeeds, "SPL.Settings.NoUselessSeeds.Desc".Translate());
@@ -46,10 +46,13 @@ namespace SeedsPleaseLite
 
 			//Record positioning before closing out the lister...
 			Rect seedlessFilterRect = inRect.ContractedBy(15f);
-			seedlessFilterRect.y = options.curY + 95f;
-			seedlessFilterRect.height = inRect.height - options.curY - 105f; //Use remaining space
+			// curY and listingRect are not accessible; use options.GetCurY() if available, otherwise estimate position
+			float curY = options.GetType().GetProperty("CurY", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic)?.GetValue(options) as float? ?? 0f;
+			seedlessFilterRect.y = curY + 95f;
+			seedlessFilterRect.height = inRect.height - curY - 105f; //Use remaining space
 
-			options.ColumnWidth = options.listingRect.width - 30f;
+			// ColumnWidth: set to inRect width minus margin
+			options.ColumnWidth = inRect.width - 30f;
 			options.End();
 
 			//========Setup tabs=========
@@ -86,7 +89,7 @@ namespace SeedsPleaseLite
 
 		public override string SettingsCategory()
 		{
-			return "Seeds Please: Lite";
+			return "Seeds Please: Revived";
 		}
 
 		public override void WriteSettings()
@@ -97,20 +100,20 @@ namespace SeedsPleaseLite
 			}
 			catch (System.Exception ex)
 			{
-				Log.Error("[Seeds Please: Lite] Failed to process user settings. Skipping...\n" + ex);
+				Log.Error("[Seeds Please: Revived] Failed to process user settings. Skipping...\n" + ex);
 			}
 			
 			base.WriteSettings();
 		}
-    }
+	}
 
-    public class ModSettings_SeedsPleaseLite : ModSettings
+	public class ModSettings_SeedsPleaseLite : ModSettings
 	{
 		public override void ExposeData()
 		{
 			Scribe_Values.Look(ref marketValueModifier, "marketValueModifier", 1f);
-            Scribe_Values.Look(ref extractionModifier, "extractionModifier", 1f);
-            Scribe_Values.Look(ref seedFactorModifier, "seedFactorModifier", 1f);
+			Scribe_Values.Look(ref extractionModifier, "extractionModifier", 1f);
+			Scribe_Values.Look(ref seedFactorModifier, "seedFactorModifier", 1f);
 			Scribe_Values.Look(ref noUselessSeeds, "noUselessSeeds", true);
 			Scribe_Values.Look(ref clearSnow, "clearSnow");
 			Scribe_Values.Look(ref edibleSeeds, "edibleSeeds", true);
