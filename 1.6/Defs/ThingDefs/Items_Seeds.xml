@@ -44,7 +44,7 @@
 			<ThingDef>Plant_Rice</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_Rice</li>
 					<li MayRequire="jelly.wildcultivation">PlantWildRice</li>
@@ -63,7 +63,7 @@
 			<ThingDef>Plant_Potato</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_Potato</li>
 					<li MayRequire="jelly.wildcultivation">PlantWildPotato</li>
@@ -83,7 +83,7 @@
 			<ThingDef>Plant_Corn</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_Corn</li>
 					<li MayRequire="jelly.wildcultivation">PlantWildCorn</li>
@@ -103,7 +103,7 @@
 			<ThingDef>Plant_Strawberry</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_Strawberry</li>
 				</sources>
@@ -122,7 +122,7 @@
 			<ThingDef>Plant_Hops</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_Hops</li>
 					<li MayRequire="jelly.wildcultivation">PlantWildHops</li>
@@ -142,7 +142,7 @@
 			<ThingDef>Plant_Smokeleaf</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_Smokeleaf</li>
 					<li MayRequire="jelly.wildcultivation">PlantWildSmokeleaf</li>
@@ -162,7 +162,7 @@
 			<ThingDef>Plant_Psychoid</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_Psychoid</li>
 					<li MayRequire="jelly.wildcultivation">PlantWildPsychoid</li>
@@ -181,7 +181,7 @@
 			<ThingDef>Plant_TreeDrago</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreeDrago</li>
 				</sources>
@@ -196,7 +196,7 @@
 			<ThingDef>Plant_TreeWillow</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreeWillow</li>
 				</sources>
@@ -214,7 +214,7 @@
 			<ThingDef>Plant_TreeCypress</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreeCypress</li>
 				</sources>
@@ -232,7 +232,7 @@
 			<ThingDef>Plant_TreeMaple</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreeMaple</li>
 				</sources>
@@ -250,7 +250,7 @@
 			<ThingDef>Plant_TreeOak</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreeOak</li>
 				</sources>
@@ -268,7 +268,7 @@
 			<ThingDef>Plant_TreePoplar</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreePoplar</li>
 				</sources>
@@ -286,7 +286,7 @@
 			<ThingDef>Plant_TreePine</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreePine</li>
 				</sources>
@@ -304,7 +304,7 @@
 			<ThingDef>Plant_TreeBirch</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreeBirch</li>
 				</sources>
@@ -322,7 +322,7 @@
 			<ThingDef>Plant_TreeTeak</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreeTeak</li>
 				</sources>
@@ -340,7 +340,7 @@
 			<ThingDef>Plant_TreeCecropia</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreeCecropia</li>
 				</sources>
@@ -358,7 +358,7 @@
 			<ThingDef>Plant_TreePalm</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreePalm</li>
 				</sources>
@@ -376,7 +376,7 @@
 			<ThingDef>Plant_TreeBamboo</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_TreeBamboo</li>
 				</sources>
@@ -394,7 +394,7 @@
 			<ThingDef>Plant_SaguaroCactus</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_SaguaroCactus</li>
 				</sources>
@@ -417,7 +417,7 @@
 			<ThingDef>Plant_Cotton</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<harvestOverride>RawCotton</harvestOverride>
 				<sources>
 					<li>Plant_Cotton</li>
@@ -442,7 +442,7 @@
 			<ThingDef>Plant_Devilstrand</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<harvestOverride>RawDevilstrand</harvestOverride>
 				<sources>
 					<li>Plant_Devilstrand</li>
@@ -468,7 +468,7 @@
 			<ThingDef>Plant_HealrootWild</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<harvestFactor>5</harvestFactor>
 				<harvestOverride>RawHealroot</harvestOverride>
 				<sources>
@@ -490,7 +490,7 @@
 			<ThingDef>Plant_TreeCocoa</ThingDef>
 		</descriptionHyperlinks>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<harvestOverride>RawCocoaBeans</harvestOverride>
 				<sources>
 					<li>Plant_TreeCocoa</li>
@@ -513,7 +513,7 @@
 			<MarketValue>4.25</MarketValue>
 		</statBases>
 		<modExtensions>
-			<li Class="SeedsPleaseLite.Seed">
+			<li Class="SeedsPleaseRevived.Seed">
 				<sources>
 					<li>Plant_Tinctoria</li>
 					<li MayRequire="jelly.wildcultivation">PlantWild_Tinctoria</li>

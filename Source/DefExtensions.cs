@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Verse;
 
-namespace SeedsPleaseLite
+namespace SeedsPleaseRevived
 {
 	public class Seed : DefModExtension
 	{

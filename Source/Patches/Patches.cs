@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace SeedsPleaseLite
+namespace SeedsPleaseRevived
 {
     //This patch controls the dropping of seeds upon harvest
     [HarmonyPatch(typeof(Plant), nameof(Plant.PlantCollected))]
@@ -27,7 +27,7 @@ namespace SeedsPleaseLite
                     //Try for a bonus seed
                     int count = Rand.Chance(seedDefX.extraChance) ? 2 : 1;
 
-                    float stackCount = seedDefX.seedFactor * count * SeedsPleaseLite.ModSettings_SeedsPleaseLite.seedFactorModifier;
+                    float stackCount = seedDefX.seedFactor * count * SeedsPleaseRevived.ModSettings_SeedsPleaseRevived.seedFactorModifier;
                     if (stackCount < 1f)
                     {
                         if (Rand.Chance(stackCount)) stackCount = 1f;
@@ -67,7 +67,7 @@ namespace SeedsPleaseLite
     {
         static void Prefix(List<ThingDef> ___excludedThingDefs)
         {
-            if (SeedsPleaseLite.ModSettings_SeedsPleaseLite.noUselessSeeds) 
+            if (SeedsPleaseRevived.ModSettings_SeedsPleaseRevived.noUselessSeeds) 
             {
                 //Get a list of wild plants that grow in player's map(s)
                 List<ThingDef> wildBiomePlants = new List<ThingDef>();

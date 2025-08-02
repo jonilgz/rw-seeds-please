@@ -1,0 +1,16 @@
+<Defs>
+    <ThingDef ParentName="SeedBase">
+        <defName>Seed__Snagroot</defName>
+        <label>_snagroot seeds</label>
+        <descriptionHyperlinks>
+            <ThingDef>Plant_TreeSnagroot</ThingDef>
+        </descriptionHyperlinks>
+        <modExtensions>
+            <li Class="SeedsPleaseRevived.Seed">
+                <sources>
+                    <li>Plant_TreeSnagroot</li>
+                </sources>
+            </li>
+        </modExtensions>
+    </ThingDef>
+</Defs>

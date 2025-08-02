@@ -6,7 +6,7 @@ using HarmonyLib;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SeedsPleaseLite
+namespace SeedsPleaseRevived
 {
 	//This patch controls the dropping of seeds upon harvest
 	[HarmonyPatch]
@@ -34,7 +34,7 @@ namespace SeedsPleaseLite
 			if (seed == null || seed.thingCategories.NullOrEmpty()) return __result;
 
 			Map map = pawn.Map;
-			if (ModSettings_SeedsPleaseLite.clearSnow && NeedsToClearSnowFirst(c, map, pawn, ref __result)) return __result;
+			if (ModSettings_SeedsPleaseRevived.clearSnow && NeedsToClearSnowFirst(c, map, pawn, ref __result)) return __result;
 			
 			//Predicate filtering the kind of seed allowed
 			Predicate<Thing> predicate = tempThing =>

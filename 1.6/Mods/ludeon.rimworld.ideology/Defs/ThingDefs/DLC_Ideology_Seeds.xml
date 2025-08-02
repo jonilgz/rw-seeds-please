@@ -1,0 +1,30 @@
+<Defs>
+    <ThingDef ParentName="SeedBase">
+        <defName>Seed__Nutrifungus</defName>
+        <label>_nutrifungus seeds</label>
+        <descriptionHyperlinks>
+            <ThingDef>Plant_Nutrifungus</ThingDef>
+        </descriptionHyperlinks>
+        <modExtensions>
+            <li Class="SeedsPleaseRevived.Seed">
+                <sources>
+                    <li>Plant_Nutrifungus</li>
+                </sources>
+            </li>
+        </modExtensions>
+    </ThingDef>
+    <ThingDef ParentName="SeedBase">
+        <defName>Seed__Fibercorn</defName>
+        <label>_fibercorn seeds</label>
+        <descriptionHyperlinks>
+            <ThingDef>Plant_Fibercorn</ThingDef>
+        </descriptionHyperlinks>
+        <modExtensions>
+            <li Class="SeedsPleaseRevived.Seed">
+                <sources>
+                    <li>Plant_Fibercorn</li>
+                </sources>
+            </li>
+        </modExtensions>
+    </ThingDef>
+</Defs>

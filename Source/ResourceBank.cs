@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace SeedsPleaseLite
+namespace SeedsPleaseRevived
 {
     public static class ResourceBank
     {
