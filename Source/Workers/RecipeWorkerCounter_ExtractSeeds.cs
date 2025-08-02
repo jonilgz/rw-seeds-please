@@ -2,7 +2,7 @@ using RimWorld;
 using Verse;
 using System.Linq;
 
-namespace SeedsPleaseLite
+namespace SeedsPleaseRevived
 {
 	/// <summary>
 	/// This is responsible for the seed extraction recipe's ability to do the "Do until X" bill type, explaining how/what to count.

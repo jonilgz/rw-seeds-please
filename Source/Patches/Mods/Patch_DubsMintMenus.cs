@@ -2,7 +2,7 @@ using System.Reflection;
 using HarmonyLib;
 using Verse;
 
-namespace SeedsPleaseLite
+namespace SeedsPleaseRevived
 {
     [HarmonyPatch]
     static class Patch_DubsMintMenus

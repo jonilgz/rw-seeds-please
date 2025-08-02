@@ -6,10 +6,10 @@ using UnityEngine;
 using System.Xml.Linq;
 using System.Text;
 using System.Linq;
-using static SeedsPleaseLite.ResourceBank.Defs;
-using Settings = SeedsPleaseLite.ModSettings_SeedsPleaseLite;
+using static SeedsPleaseRevived.ResourceBank.Defs;
+using Settings = SeedsPleaseRevived.ModSettings_SeedsPleaseRevived;
 
-namespace SeedsPleaseLite
+namespace SeedsPleaseRevived
 {
     [StaticConstructorOnStartup]
     public static class SeedsPleaseUtility
@@ -229,7 +229,7 @@ namespace SeedsPleaseLite
                 new XElement("descriptionHyperlinks", 
                 new XElement("ThingDef",thingDef)),
                 new XElement("modExtensions",
-                    new XElement("li", new XAttribute("Class", "SeedsPleaseLite.Seed"),
+                    new XElement("li", new XAttribute("Class", "SeedsPleaseRevived.Seed"),
                         new XElement("sources",
                             new XElement("li", thingDef.defName)))));
             }

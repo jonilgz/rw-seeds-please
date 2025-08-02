@@ -85,7 +85,7 @@
 			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/ThingDef[defName="Plant_Haygrass" or defName="Plant_TreeBonsai"]</xpath>
 				<value>
-					<li Class="SeedsPleaseLite.Seedless" />
+					<li Class="SeedsPleaseRevived.Seedless" />
 				</value>
 			</li>
 			<!-- Check if the extraction recipe should be applied to the butcher spot -->

@@ -3,10 +3,10 @@ using UnityEngine;
 using Verse.Sound;
 using RimWorld;
 using System.Collections.Generic;
-using static SeedsPleaseLite.ModSettings_SeedsPleaseLite;
-using static SeedsPleaseLite.SeedsPleaseUtility;
- 
-namespace SeedsPleaseLite
+using static SeedsPleaseRevived.ModSettings_SeedsPleaseRevived;
+using static SeedsPleaseRevived.SeedsPleaseUtility;
+
+namespace SeedsPleaseRevived
 {
 	public static class OptionsDrawUtility
 	{

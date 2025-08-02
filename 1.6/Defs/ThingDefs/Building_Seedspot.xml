@@ -48,7 +48,7 @@
 					<li>ToolCabinet</li>
 				</linkableFacilities>
 			</li>
-			<li MayRequire="oskarpotocki.vanillafactionsexpanded.core" Class="VanillaFurnitureExpanded.CompProperties_RandomBuildingGraphic">
+			<li MayRequire="oskarpotocki.vanillafactionsexpanded.core" Class="VEF.Buildings.CompProperties_RandomBuildingGraphic">
 				<randomGraphics>
 					<li>SeedProcessingSpot</li>
 					<li>transparent</li>
@@ -60,7 +60,7 @@
 			<li>PlaceWorker_ShowFacilitiesConnections</li>
 			<li>PlaceWorker_ReportWorkSpeedPenalties</li>
 			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
-			<li>SeedsPleaseLite.WorkPlacer_OnlyOnBench</li>
+			<li>SeedsPleaseRevived.WorkPlacer_OnlyOnBench</li>
 		</placeWorkers>
 	</ThingDef>
 </Defs>
